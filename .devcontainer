@@ -1,0 +1,37 @@
+{
+    "name": "Phaser & Bun JS Dev Environment",
+    
+    // 1. Immagine Base: Utilizza un'immagine Node.js come base
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+
+    // 2. Installazione di Bun come "Feature"
+    // Questo aggiunge Bun all'immagine Node.js esistente
+    "features": {
+        "ghcr.io/shyim/devcontainers-features/bun:0": {}
+    },
+
+    // 3. Comandi di Avvio: Esegui comandi dopo la creazione del Codespace
+    "postCreateCommand": "bun install",
+
+    // 4. Port Forwarding: Inoltra automaticamente la porta del server di sviluppo
+    // La maggior parte dei server Vite usa la 5173 o 3000, ma la 8080 è comune per i giochi Phaser.
+    // Specifichiamo la 5173 (standard Vite) e la rendiamo "pubblica" per l'anteprima.
+    "forwardPorts": [5173],
+    "portsAttributes": {
+        "5173": {
+            "label": "Phaser Dev Server",
+            "onAutoForward": "notify"
+        }
+    },
+    
+    // 5. Estensioni Consigliate (Per una migliore esperienza VS Code)
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint"
+                // Aggiungi qui estensioni specifiche per Phaser se ne usi (es. Phaser Editor)
+            ]
+        }
+    }
+}
